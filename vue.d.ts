@@ -1,0 +1,7 @@
+declare module '@/App.vue'
+declare module '@/components/HelloWorld.vue'
+declare module '@/components/Home.vue'
+declare module '@/components/amis-editor/amis-editor.vue'
+declare module 'vue'
+declare module 'vuera'
+declare module 'vue-property-decorator'

@@ -1,0 +1,244 @@
+<script lang="ts">
+function uuid() {
+  let d = new Date().getTime()
+  if (window.performance && typeof window.performance.now === 'function') {
+    d += performance.now()
+  }
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)
+  })
+  return uuid
+}
+export default{
+  data(){
+    return {
+      draggingNode: null as any,
+      dropEndTreeRef: null as any,
+      formData: {} as any,
+      dragStart: '',
+      dialogStatus: 0,
+      tempData: {} as any,
+      topData:[
+        {
+          id:uuid(),
+          name:'title1',
+          level:1,
+          children:[
+            {
+              id:uuid(),
+              name:'节点1',
+              level:2
+            },
+            {
+              id:uuid(),
+              name:'节点2',
+              level:2
+            }
+          ]
+        }
+      ],
+      bottomData:[
+        {
+          id:uuid(),
+          name:'title2',
+          level:1,
+          children:[
+            {
+              id:uuid(),
+              name:'节点3',
+              level:2
+            },
+            {
+              id:uuid(),
+              name:'节点4',
+              level:2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  methods: {
+    allowDrop(draggingNode: any, dropNode: any, type: any) {
+      return draggingNode.data.id != dropNode.data.id && ((draggingNode.data.level == dropNode.data.level && type != 'inner') || (draggingNode.data.level > dropNode.data.level && type == 'inner'))
+    },
+    allowDrag(draggingNode: any) {
+      return draggingNode.data.level > 1
+    },
+    handleTopDragEnd(draggingNode: any, dropNode: any, dropType: any, event: any) {
+      if (this.dragStart == 'top') {
+        this.dragStart = ''
+        let topTree = this.$refs['topTree']
+        this.handleDragEnd(draggingNode, dropNode, dropType, event, topTree)
+      }
+    },
+    handleBottomDragEnd(draggingNode: any, dropNode: any, dropType: any, event: any) {
+      if (this.dragStart == 'bottom') {
+        this.dragStart = ''
+        let bottomTree = this.$refs['bottomTree']
+        this.handleDragEnd(draggingNode, dropNode, dropType, event, bottomTree)
+      }
+    },
+    handleDragEnd(draggingNode: any, dropNode: any, dropType: any, event: any, from: any) {
+      if (this.dropEndTreeRef) {
+        this.dropEndTreeRef.$emit('tree-node-drag-end', event)
+        this.$nextTick(() => {
+          from.remove(draggingNode)
+        })
+      }
+    },
+    handleTopTreeDragStart(node: any, event: any) {
+      if (this.dragStart == '') {
+        this.dragStart = 'top'
+        let bottomTree = this.$refs['bottomTree']
+        this.handleDragStart(node, event, bottomTree)
+      }
+    },
+    handleBottmTreeDragStart(node: any, event: any) {
+      if (this.dragStart == '') {
+        this.dragStart = 'bottom'
+        let topTree = this.$refs['topTree']
+        this.handleDragStart(node, event, topTree)
+      }
+    },
+    handleDragStart(node: any, event: any, ref: any) {
+      this.draggingNode = node
+      ref.$emit('tree-node-drag-start', event, { node })
+    },
+    handleTopDragEnter() {
+      if (this.dragStart == 'bottom') {
+        let ref = this.$refs['topTree']
+        this.dropEndTreeRef = ref
+      } else {
+        this.dropEndTreeRef = null
+      }
+    },
+    handleBottomDragEnter() {
+      if (this.dragStart == 'top') {
+        let ref = this.$refs['bottomTree']
+        this.dropEndTreeRef = ref
+      } else {
+        this.dropEndTreeRef = null
+      }
+    },
+    insertAfter(node: any, data: any) {
+      const parent = node.parent
+      const children = parent.data.children
+      const index = children.findIndex((d: any) => d.id === data.id)
+      let temp: any = { id: uuid(), name: '新节点', type: data.type }
+      children.splice(index + 1, 0, temp)
+    },
+    handleRemove(node: any, data: any) {
+      const parent = node.parent
+      if(!parent){
+        this.$message.error('不允许删除根节点')
+        return
+      }
+      const children = parent.data.children || parent.data
+      if (children.length == 1) {
+        this.$message.error('应拥有至少一个节点')
+        return
+      }
+      const index = children.findIndex((d: any) => d.id === data.id)
+      children.splice(index, 1)
+    },
+    editNodeName(node: any, data: any) {
+      this.dialogStatus = 1
+      this.formData = data
+      this.tempData = { ...data }
+    },
+    close() {
+      this.dialogStatus = 0
+      this.formData = Object.assign(this.formData, this.tempData)
+      this.tempData = {}
+    },
+    confirm() {
+      this.dialogStatus = 0
+      this.tempData = {}
+    }
+  }
+}
+</script>
+
+<template>
+  <div id="app">
+    <el-card shadow="none" class="tree-card">
+      <el-tree ref="topTree" default-expand-all :data="topData" draggable :allow-drag="allowDrag" :allow-drop="allowDrop" @node-drag-end="handleTopDragEnd" @node-drag-start="handleTopTreeDragStart" @node-drag-enter="handleTopDragEnter">
+        <span slot-scope="{ node, data }" class="custom-tree-node">
+          <span>{{ data.name }}</span>
+          <span v-if="data.level != 1">
+            <el-dropdown>
+              <span class="el-dropdown-link"><el-button type="text" icon="el-icon-menu"></el-button></span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="insertAfter(node, data)">添加同级节点</el-dropdown-item>
+                <el-dropdown-item @click.native="handleRemove(node, data)">移除节点</el-dropdown-item>
+                <el-dropdown-item @click.native="editNodeName(node, data)">修改节点名称</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </span>
+        </span>
+      </el-tree>
+    </el-card>
+    <el-card shadow="none" class="tree-card">
+      <el-tree ref="bottomTree" node-key="id" default-expand-all :data="bottomData" draggable :allow-drag="allowDrag" :allow-drop="allowDrop" @node-drag-end="handleBottomDragEnd" @node-drag-start="handleBottmTreeDragStart" @node-drag-enter="handleBottomDragEnter">
+        <span slot-scope="{ node, data }" class="custom-tree-node">
+          <span>{{ data.name }}</span>
+        </span>
+      </el-tree>
+    </el-card>
+    <el-dialog :visible="true" v-if="dialogStatus != 0" @close="close">
+      <el-form :model="formData">
+        <el-form-item label="节点名称">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-button @click="confirm">确认</el-button>
+    </el-dialog>
+  </div>
+</template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+#app{
+  display: flex;
+  height: 50vh;
+  width: 50vw;
+}
+/deep/.el-card__body{
+  width: 300px;
+}
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
+}
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+</style>
