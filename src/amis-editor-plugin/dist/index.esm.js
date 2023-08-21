@@ -289,6 +289,9 @@ function createVue2Component(vueObj) {
       this.resolveAmisProps = this.resolveAmisProps.bind(this)
       this.renderChild = this.renderChild.bind(this)
     }
+    /**
+    * 修改了官方demo，官方demo中传递了props参数，导致控制台报错，同时预览时修改的参数不会生效
+    */
     componentDidMount() {
       const { amisData, amisFunc } = this.resolveAmisProps()
       let flag = true
@@ -316,6 +319,9 @@ function createVue2Component(vueObj) {
       }
       return childElemCont
     }
+    /**
+    * 这里是在右侧菜单配置时进行的传参
+    */
     componentDidUpdate() {
       Object.keys(this.props.$schema).forEach(key => {
         if (typeof this.props[key] !== 'function' && typeof this.props[key] !== 'object' && this.props[key]) this.vm[key] = this.props[key]
