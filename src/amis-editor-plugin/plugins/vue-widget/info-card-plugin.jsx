@@ -16,8 +16,20 @@ export class InfoCardPlugin {
     name: 'vue-info-card',
     title: 'amis 是一个低代码前端框架，它使用 JSON 配置来生成页面，可以减少页面开发工作量，极大提升效率。',
     backgroundImage: 'https://search-operate.cdn.bcebos.com/64c279f23794a831f9a8e7a4e0b722dd.jpg',
-    img_count: 3
+    img_count: 3,
+    body:[
+      {
+        type: 'tpl',
+        tpl: '内容区'
+      }
+    ]
   }
+  regions = [
+    {
+      key: 'body',
+      label: '内容区'
+    },
+  ]
   previewSchema = {
     type: 'vue-info-card',
     label: 'vue-info-card',

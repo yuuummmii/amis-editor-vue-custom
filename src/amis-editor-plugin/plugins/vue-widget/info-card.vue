@@ -7,6 +7,8 @@
         {{ img_count }}
       </div>
     </div>
+    <div class="widget-container" id="ReactChildBody">
+    </div>
   </div>
 </template>
 <script>
@@ -36,7 +38,11 @@ export default {
     }
   },
   mounted() {},
-  updated() {},
+  updated() {
+    if (this.renderChild && this.body) {
+      this.renderChild('body', this.body, 'ReactChildBody');
+    }
+  },
   activated() {
     this.isAlive = true
   },

@@ -890,6 +890,28 @@ ajv@^6.1.0, ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+amis-core@3.4.0-beta.12, amis-core@^3.4.0-beta.12:
+  version "3.4.0-beta.12"
+  resolved "https://registry.yarnpkg.com/amis-core/-/amis-core-3.4.0-beta.12.tgz#0cfb55dba412ef5401cd93ba757ba197da22d560"
+  integrity sha512-QnHSIKXrcAOnJQmMgWwNHN5XR4lDmg8fDhv2FCcgX+KCBzcpDJZoJtEBJ8pkpk8Kz3HaM64wQ4NNzSx9ccn5hw==
+  dependencies:
+    amis-formula "^3.4.0-beta.12"
+    classnames "2.3.2"
+    file-saver "^2.0.2"
+    hoist-non-react-statics "^3.3.2"
+    lodash "^4.17.15"
+    match-sorter "^6.3.1"
+    mobx "^4.5.0"
+    mobx-react "^6.3.1"
+    mobx-state-tree "^3.17.3"
+    moment "^2.19.4"
+    papaparse "^5.3.0"
+    qs "6.9.7"
+    react-json-view "1.21.3"
+    react-visibility-sensor "5.1.1"
+    tslib "^2.3.1"
+    uncontrollable "7.2.1"
+
 amis-core@^2.2.0, amis-core@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/amis-core/-/amis-core-2.9.0.tgz#3293d1f0976666d2ef06938477e5dd047ff1c6c8"
@@ -912,29 +934,7 @@ amis-core@^2.2.0, amis-core@^2.9.0:
     tslib "^2.3.1"
     uncontrollable "7.2.1"
 
-amis-core@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/amis-core/-/amis-core-3.2.0.tgz#620581bf9f8d4b7160ec8b812525b46ac15b3e8b"
-  integrity sha512-ynXcqvjEbB+YZue8opiq+hTVYzE4FlVyrXVDe4e6ONsgeETgveNTX1+4pDzI29qTP6q6Ji2/yZ3C6GIj5Th7tw==
-  dependencies:
-    amis-formula "^3.2.0"
-    classnames "2.3.1"
-    file-saver "^2.0.2"
-    hoist-non-react-statics "^3.3.2"
-    lodash "^4.17.15"
-    match-sorter "^6.3.1"
-    mobx "^4.5.0"
-    mobx-react "^6.3.1"
-    mobx-state-tree "^3.17.3"
-    moment "^2.19.4"
-    papaparse "^5.3.0"
-    qs "6.9.7"
-    react-json-view "1.21.3"
-    react-visibility-sensor "5.1.1"
-    tslib "^2.3.1"
-    uncontrollable "7.2.1"
-
-amis-editor-core@*:
+amis-editor-core@*, amis-editor-core@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/amis-editor-core/-/amis-editor-core-5.5.0.tgz#2b39b53b3745fb4debbf700326c4029b1aad8f8c"
   integrity sha512-cX3GK2I/Eu2UeIbfXnjd2lykLxSOL2fARypk1tznzBitjvv7nrhH98DhGYD0iqxUvFAT7ZEnPLUigfHMApacnQ==
@@ -978,19 +978,19 @@ amis-editor@^5.5.0:
     lodash "^4.17.15"
     mobx-state-tree "^3.17.3"
 
-amis-formula@^2.2.0, amis-formula@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/amis-formula/-/amis-formula-2.9.0.tgz#17a5d7cbd8959f44b71e9a2153cbaf666ba88f0a"
-  integrity sha512-Oy/Ap7RCnQWV3GeMXLtU4r12s2Xn+XbtPfs30Dzwzp4urvyHwTzsdUWEO4uS3m0h08WXcTTvCcyNpDV7h0jCVA==
+amis-formula@3.4.0-beta.12, amis-formula@^3.4.0-beta.12:
+  version "3.4.0-beta.12"
+  resolved "https://registry.yarnpkg.com/amis-formula/-/amis-formula-3.4.0-beta.12.tgz#8721f66fcea76005b0476052bccadb1cc45e34e5"
+  integrity sha512-0qkxCsPM/t3lj3iiq7mp6nd/2A3NoR5vK93dRXy/oRUTY+6yDY8A9prHAyKXxSU56ReAw95RCthTwW8swq+XRQ==
   dependencies:
     lodash "^4.17.15"
     moment "^2.29.4"
     tslib "^2.3.1"
 
-amis-formula@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/amis-formula/-/amis-formula-3.2.0.tgz#162fc633a74770c3d74b7f93f8ff4ddfc21ff390"
-  integrity sha512-hLI9oBEpGAwB9IzVER8mLBgUSJXhhZ+FvbJyHGraZ/LMv5VNvHdslbTtOxaNuLWxlxSM4K3rkRPKoMTXmeQsQA==
+amis-formula@^2.2.0, amis-formula@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/amis-formula/-/amis-formula-2.9.0.tgz#17a5d7cbd8959f44b71e9a2153cbaf666ba88f0a"
+  integrity sha512-Oy/Ap7RCnQWV3GeMXLtU4r12s2Xn+XbtPfs30Dzwzp4urvyHwTzsdUWEO4uS3m0h08WXcTTvCcyNpDV7h0jCVA==
   dependencies:
     lodash "^4.17.15"
     moment "^2.29.4"
@@ -1025,6 +1025,49 @@ amis-theme-editor@^2.0.11-beta.2:
   dependencies:
     amis-theme-editor-helper "*"
 
+amis-ui@3.4.0-beta.12, amis-ui@^3.4.0-beta.12:
+  version "3.4.0-beta.12"
+  resolved "https://registry.yarnpkg.com/amis-ui/-/amis-ui-3.4.0-beta.12.tgz#95f4c5167c6c2e3a31de38966191d4796cd6bd36"
+  integrity sha512-PoZ9+hQ6UozL9DH3deWtaECIczTEf0CaplfGe9ZSwB17cTQ6Gb6S+lO5xxd0ZkBiZYbNs0qF9S8xhsnbb24fCA==
+  dependencies:
+    "@rc-component/mini-decimal" "^1.0.1"
+    amis-core "^3.4.0-beta.12"
+    amis-formula "^3.4.0-beta.12"
+    classnames "2.3.2"
+    codemirror "^5.63.0"
+    downshift "6.1.12"
+    echarts "5.4.0"
+    froala-editor "3.1.1"
+    hoist-non-react-statics "^3.3.2"
+    jsbarcode "^3.11.5"
+    keycode "^2.2.1"
+    lodash "^4.17.15"
+    markdown-it "^12.0.6"
+    markdown-it-html5-media "^0.7.1"
+    match-sorter "^6.3.1"
+    mobx "^4.5.0"
+    mobx-react "^6.3.1"
+    mobx-state-tree "^3.17.3"
+    moment "^2.19.4"
+    monaco-editor "0.30.1"
+    prop-types "^15.6.1"
+    rc-input-number "^7.4.0"
+    rc-menu "^9.8.4"
+    rc-overflow "^1.3.1"
+    rc-progress "^3.1.4"
+    react-color "^2.19.3"
+    react-draggable "^4.4.5"
+    react-hook-form "7.39.0"
+    react-json-view "1.21.3"
+    react-overlays "5.1.1"
+    react-textarea-autosize "8.3.3"
+    react-transition-group "4.4.2"
+    react-visibility-sensor "5.1.1"
+    sortablejs "1.15.0"
+    tinymce "^6.1.2"
+    tslib "^2.3.1"
+    uncontrollable "7.2.1"
+
 amis-ui@^2.2.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/amis-ui/-/amis-ui-2.9.0.tgz#edf6c334f16ea0a80a197c7f1ff15d738c6c447f"
@@ -1053,48 +1096,6 @@ amis-ui@^2.2.0:
     prop-types "^15.6.1"
     rc-input-number "^7.4.0"
     rc-menu "^9.8.0"
-    rc-progress "^3.1.4"
-    react-color "^2.19.3"
-    react-draggable "^4.4.5"
-    react-hook-form "7.39.0"
-    react-json-view "1.21.3"
-    react-overlays "5.1.1"
-    react-textarea-autosize "8.3.3"
-    react-transition-group "4.4.2"
-    react-visibility-sensor "5.1.1"
-    sortablejs "1.15.0"
-    tinymce "^6.1.2"
-    tslib "^2.3.1"
-    uncontrollable "7.2.1"
-
-amis-ui@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/amis-ui/-/amis-ui-3.2.0.tgz#aea2ab87db9368cce511d9e21f6796c249890743"
-  integrity sha512-t0EcGu6R7zPBq4kT+YXXOFxMyRRS4MFYRBoeg7cK4R1qQdS40hqv9SnXgBTvW+ibOZBz6J+8odun45dzQAEsjA==
-  dependencies:
-    "@rc-component/mini-decimal" "^1.0.1"
-    amis-core "^3.2.0"
-    amis-formula "^3.2.0"
-    classnames "2.3.1"
-    codemirror "^5.63.0"
-    downshift "6.1.12"
-    echarts "5.4.0"
-    froala-editor "3.1.1"
-    hoist-non-react-statics "^3.3.2"
-    jsbarcode "^3.11.5"
-    keycode "^2.2.1"
-    lodash "^4.17.15"
-    markdown-it "^12.0.6"
-    markdown-it-html5-media "^0.7.1"
-    match-sorter "^6.3.1"
-    mobx "^4.5.0"
-    mobx-react "^6.3.1"
-    mobx-state-tree "^3.17.3"
-    moment "^2.19.4"
-    monaco-editor "0.30.1"
-    prop-types "^15.6.1"
-    rc-input-number "^7.4.0"
-    rc-menu "^9.8.4"
     rc-progress "^3.1.4"
     react-color "^2.19.3"
     react-draggable "^4.4.5"
@@ -1150,16 +1151,16 @@ amis@2.2.0:
     tslib "^2.3.1"
     video-react "0.15.0"
 
-amis@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/amis/-/amis-3.2.0.tgz#cc6cb7f74b36aaf8cd017dbe4c6b0578f13f3040"
-  integrity sha512-Cpu8Gw01r0lVN5SlDlO3/AInYeBNyeByEGMW+Vhw5HzKiBzunpRwR917ULzBB5QBncDkP1D139v+cugrj8YgEA==
+amis@3.4.0-beta.12:
+  version "3.4.0-beta.12"
+  resolved "https://registry.yarnpkg.com/amis/-/amis-3.4.0-beta.12.tgz#48c3f68be2b8e073f25e61142c188e67c9e9ab24"
+  integrity sha512-LWktQP3yTss1OcXTLHQuVQRVSbtDsk2JF3yBXJBi5qNanRQJr3xl5piHncTS8wVPKQSlOZ1ZGhdZOfOUYUCRAQ==
   dependencies:
-    amis-core "^3.2.0"
-    amis-ui "^3.2.0"
+    amis-core "^3.4.0-beta.12"
+    amis-ui "^3.4.0-beta.12"
     attr-accept "2.2.2"
     blueimp-canvastoblob "2.1.0"
-    classnames "2.3.1"
+    classnames "2.3.2"
     downshift "6.1.12"
     echarts "5.4.0"
     echarts-stat "^1.2.0"
@@ -1179,7 +1180,7 @@ amis@^3.2.0:
     mobx-state-tree "^3.17.3"
     moment "^2.19.4"
     mpegts.js "^1.6.10"
-    office-viewer "^0.1.3"
+    office-viewer "^0.1.5"
     prop-types "^15.6.1"
     qrcode.react "^3.1.0"
     rc-overflow "^1.2.4"
@@ -1728,7 +1729,7 @@ classnames@2.3.1:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
-classnames@2.x, classnames@^2.2.1, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.2:
+classnames@2.3.2, classnames@2.x, classnames@^2.2.1, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -4633,7 +4634,7 @@ object.assign@^4.1.4:
     has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
-office-viewer@^0.1.3:
+office-viewer@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/office-viewer/-/office-viewer-0.1.5.tgz#404d89e59e47f658542708543dd99f8af62ec15d"
   integrity sha512-u5uewXr5XnC6qLf182zi6Urp04wkGb5qti9hgVSj2+028z1RmuAB7XFB5BocT5XQMJFUtymBbLZFnwRGad2tDg==

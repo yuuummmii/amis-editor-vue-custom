@@ -3,6 +3,7 @@ import axios from "axios";
 import router from "@/router";
 import { alert, confirm, toast } from "amis";
 import copy from "copy-to-clipboard";
+import request from '@/request'
 const normalizeLink = (to) => {
   if (/^\/api\//.test(to)) {
     return to;
@@ -99,7 +100,7 @@ const amisEnv = {
       config.headers["Content-Type"] = "application/json";
     }
     data && (config.data = data);
-    return axios.request({ url, ...config });
+    return request(url ,config );
   },
   isCancel: (e) => axios.isCancel(e),
   alert,
