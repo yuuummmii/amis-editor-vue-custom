@@ -270,50 +270,36 @@ function createVue2Component(vueObj) {
     */
     componentDidMount() {
       const { amisData, amisFunc } = this.resolveAmisProps();
-      const { data, ...rest } = (vueObj =
-        typeof vueObj === "function" ? new vueObj() : vueObj);
-      this.vm = new Vue({
-        data: extendObject(typeof data === "function" ? data() : data),
-        ...rest,
-        props: rest.props || {},
-      });
-      Object.keys(amisData.$schema).forEach((key) => {
+      let flag = true;
+      Object.keys(vueObj.props).forEach((key) => {
         if (
-          typeof amisData[key] !== "function" &&
-          typeof amisData[key] !== "object" &&
-          amisData[key]
-        )
-          this.vm[key] = amisData[key];
-        else if (typeof amisData[key] == "object" && amisData[key]) {
-          if (
-            Object.prototype.toString.call(this.vm[key]) === "[object Array]"
-          ) {
-            this.vm[key] = amisData[key];
-          } else if (this.vm[key]) {
-            this.vm[key] = Object.assign(this.vm[key], amisData[key]);
-          } else {
-            this.vm[key] = amisData[key];
-          }
-        } else if (typeof amisData[key] == "boolean") {
-          this.vm[key] = amisData[key] ? true : false;
-        } else if (typeof amisData[key] == "number") {
-          this.vm[key] = amisData[key] ? amisData[key] : 0;
-        } else if (typeof amisData[key] == "string") {
-          this.vm[key] = amisData[key] ? amisData[key] : "";
+          typeof vueObj.props[key] != "function" &&
+          typeof vueObj.props[key] != "object"
+        ) {
+          flag = flag && !amisData[key];
         }
       });
+      const { data, props, ...rest } = (vueObj =
+        typeof vueObj === "function" ? new vueObj() : vueObj);
+      this.vm = new Vue({
+        data: extendObject(
+          amisData,
+          typeof data === "function" ? data() : data
+        ),
+        ...rest,
+        props: flag ? {} : props ?? rest.props,
+      });
       Object.keys(amisFunc).forEach((key) => {
-        this.vm.$props[key] = amisFunc[key];
         if (key === "render") {
           // 避免和vue中的render冲突
-          this.vm.$props["renderChild"] = (
+          this.vm["renderChild"] = (
             schemaPosition,
             childSchema,
             insertElemId
           ) => {
             this.renderChild(schemaPosition, childSchema, insertElemId);
           };
-        }
+        } else this.vm[key] = amisFunc[key];
       });
       this.domRef.current.appendChild(this.vm.$mount().$el);
       this.vm.$forceUpdate();
